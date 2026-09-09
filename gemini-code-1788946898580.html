@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mansi Gupta — Artist & Experience Designer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-color: #F9F8F6;       /* Warm paper canvas */
+      --card-bg: #FFFFFF;      /* Clean card background */
+      --text-main: #111111;    /* Deep charcoal */
+      --text-muted: #666666;   /* Muted grey */
+      --border-color: #111111; /* Sharp outline border */
+      --accent-bg: #F0EEEA;    /* Highlight fill */
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1.5rem 0.75rem;
+    }
+
+    /* Main Container with Responsive Padding */
+    .container {
+      width: 100%;
+      max-width: 520px;
+      background-color: var(--card-bg);
+      border: 2px solid var(--border-color);
+      padding: clamp(1.25rem, 5vw, 2.25rem);
+      box-shadow: 6px 6px 0px var(--border-color);
+    }
+
+    header {
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(1.5rem, 6vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
+    }
+
+    .subtitle {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .bio {
+      font-size: 0.95rem;
+      color: #222222;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Improved Asymmetric Composition for Images */
+    .image-composition {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .image-frame {
+      border: 1.5px solid var(--border-color);
+      background-color: var(--accent-bg);
+      position: relative;
+    }
+
+    .image-frame.feature {
+      aspect-ratio: 4 / 5; /* Tall primary artwork focus */
+    }
+
+    .image-frame.detail {
+      aspect-ratio: 1 / 1; /* Secondary detail crop */
+      align-self: end;    /* Offsets alignment vertically */
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(15%);
+      transition: filter 0.2s ease;
+    }
+
+    .image-frame img:hover {
+      filter: grayscale(0%);
+    }
+
+    .image-tag {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: var(--text-main);
+      color: #FFF;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      padding: 0.15rem 0.4rem;
+      text-transform: uppercase;
+    }
+
+    /* Links Stack & Tactile Buttons */
+    .links-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .btn {
+      display: block;
+      text-align: center;
+      padding: 0.85rem 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1.5px solid var(--border-color);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-primary {
+      background-color: var(--text-main);
+      color: #FFFFFF;
+      box-shadow: 3px 3px 0px var(--border-color);
+    }
+
+    .btn-primary:active,
+    .btn-primary:hover {
+      background-color: #222222;
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px var(--border-color);
+    }
+
+    .btn-secondary {
+      background-color: var(--card-bg);
+      color: var(--text-main);
+      box-shadow: 3px 3px 0px var(--border-color);
+    }
+
+    .btn-secondary:active,
+    .btn-secondary:hover {
+      background-color: var(--text-main);
+      color: #FFFFFF;
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px var(--border-color);
+    }
+
+    /* Newsletter Card */
+    .newsletter-box {
+      background-color: var(--accent-bg);
+      border: 1.5px solid var(--border-color);
+      padding: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .newsletter-box h3 {
+      font-family: 'Space Mono', monospace;
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+    }
+
+    .newsletter-box p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    /* Prevents iOS Zoom on focus */
+    .newsletter-form input[type="email"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1.5px solid var(--border-color);
+      font-family: 'Work Sans', sans-serif;
+      font-size: 16px; 
+      outline: none;
+      border-radius: 0;
+      background-color: #FFF;
+    }
+
+    .newsletter-form button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: var(--text-main);
+      color: #FFFFFF;
+      border: 1.5px solid var(--border-color);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 0;
+      text-transform: uppercase;
+    }
+
+    .newsletter-form button:hover {
+      background-color: #333333;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 1.75rem;
+    }
+
+    footer a {
+      color: var(--text-main);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <!-- Header -->
+    <header>
+      <h1>Mansi Gupta</h1>
+      <p class="subtitle">Artist & Experience Designer</p>
+    </header>
+
+    <!-- Bio -->
+    <p class="bio">
+      Exploring raw textures, organic forms, and creative un-learning. Ink, watercolors, and nature-inspired visuals.
+    </p>
+
+    <!-- Asymmetric Image Composition -->
+    <section class="image-composition">
+      <div class="image-frame feature">
+        <img src="art-1.jpg" alt="Primary Artwork Feature" />
+        <span class="image-tag">Studio</span>
+      </div>
+      <div class="image-frame detail">
+        <img src="art-2.jpg" alt="Artwork Texture Detail" />
+        <span class="image-tag">Texture</span>
+      </div>
+    </section>
+
+    <!-- Links Section -->
+    <section class="links-stack">
+      <a href="portfolio.pdf" class="btn btn-primary" download="Mansi_Gupta_Portfolio.pdf">
+        [ Download Portfolio PDF ]
+      </a>
+
+      <a href="https://mansicreates.gumroad.com/" class="btn btn-secondary" target="_blank" rel="noopener">
+        [ Gumroad Shop & Toolkits ]
+      </a>
+
+      <a href="https://www.instagram.com/mansi.creates" class="btn btn-secondary" target="_blank" rel="noopener">
+        [ Instagram — @mansi.creates ]
+      </a>
+    </section>
+
+    <!-- Newsletter Embed Card -->
+    <section class="newsletter-box">
+      <h3>Join the Newsletter</h3>
+      <p>Reflections on creative process, overcoming perfectionism, and monthly studio updates.</p>
+      
+      <form class="newsletter-form" action="https://yournewsletter.substack.com/subscribe" method="post" target="_blank">
+        <input type="email" name="email" placeholder="Enter your email address" required />
+        <button type="submit">SUBSCRIBE</button>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 Mansi Gupta · <a href="mailto:contact@mansigupta.in">contact@mansigupta.in</a></p>
+    </footer>
+  </main>
+
+</body>
+</html>
