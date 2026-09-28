@@ -8,7 +8,7 @@ title: Catalogue of Works
     --font-serif: "Georgia", "Times New Roman", serif;
     --border-color: #e5e5e0;
     --text-muted: #666666;
-    --bg-card: #fafafa;
+    --bg-card: #ffffff;
   }
 
   .catalogue-container {
@@ -44,7 +44,6 @@ title: Catalogue of Works
     font-size: 0.85rem;
     border-radius: 4px;
     cursor: pointer;
-    transition: all 0.2s ease;
   }
 
   .filter-btn.active, .filter-btn:hover {
@@ -68,7 +67,7 @@ title: Catalogue of Works
 
   .works-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
   }
 
@@ -83,19 +82,19 @@ title: Catalogue of Works
 
   .image-container {
     width: 100%;
-    height: 320px;
-    background: #ffffff;
+    min-height: 250px;
+    background: #fafafa;
     border: 1px solid #f0f0f0;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
   }
 
   .image-container img {
     max-width: 100%;
-    max-height: 100%;
+    height: auto;
+    max-height: 350px;
     object-fit: contain;
     display: block;
   }
@@ -104,7 +103,6 @@ title: Catalogue of Works
     font-family: monospace;
     font-size: 0.75rem;
     color: var(--text-muted);
-    letter-spacing: 0.05em;
   }
 
   .work-title {
@@ -112,14 +110,12 @@ title: Catalogue of Works
     font-size: 1.1rem;
     margin: 0.3rem 0 0.5rem 0;
     font-weight: 400;
-    line-height: 1.3;
   }
 
   .work-details {
     font-size: 0.85rem;
     color: var(--text-muted);
     margin: 0.15rem 0;
-    line-height: 1.4;
   }
 
   .card-footer {
@@ -138,19 +134,10 @@ title: Catalogue of Works
     border-radius: 3px;
     text-transform: uppercase;
     font-weight: 600;
-    letter-spacing: 0.05em;
   }
 
   .badge-available { background: #e6f4ea; color: #137333; }
   .badge-sold { background: #fce8e6; color: #c5221f; }
-  .badge-consigned { background: #fef7e0; color: #b06000; }
-
-  @media print {
-    nav, footer, .filter-bar { display: none !important; }
-    .collection-block { page-break-before: always; }
-    .works-grid { display: block; }
-    .work-card { page-break-inside: avoid; margin-bottom: 2rem; background: #fff; }
-  }
 </style>
 
 <div class="catalogue-container">
@@ -171,9 +158,14 @@ title: Catalogue of Works
       <h2 class="collection-title">{{ col.name }}</h2>
       <div class="works-grid">
         {% for work in col.items %}
+          {% assign clean_img = work.image | strip %}
           <div class="work-card {{ work.status }}">
             <div class="image-container">
-              <img src="/assets/images/catalogue/{{ work.image }}" alt="{{ work.title }}" loading="lazy" />
+              <img 
+                src="/assets/images/catalogue/{{ clean_img }}" 
+                alt="{{ work.title }}" 
+                loading="lazy" 
+              />
             </div>
             <span class="inv-code">{{ work.id }}</span>
             <h3 class="work-title"><em>{{ work.title }}</em> ({{ work.year }})</h3>
