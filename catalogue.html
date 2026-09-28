@@ -8,97 +8,123 @@ title: Catalogue of Works
     --font-serif: "Georgia", "Times New Roman", serif;
     --border-color: #e5e5e0;
     --text-muted: #666666;
+    --bg-card: #fafafa;
+  }
+
+  .catalogue-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
   }
 
   .catalogue-header {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 1rem;
+  }
+
+  .catalogue-header h1 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 2.2rem;
+    margin: 0;
   }
 
   .filter-bar {
     display: flex;
     gap: 0.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     flex-wrap: wrap;
   }
 
   .filter-btn {
     background: transparent;
     border: 1px solid var(--border-color);
-    padding: 0.4rem 0.8rem;
+    padding: 0.4rem 1rem;
     font-size: 0.85rem;
     border-radius: 4px;
     cursor: pointer;
+    transition: all 0.2s ease;
   }
 
   .filter-btn.active, .filter-btn:hover {
     background: #1a1a1a;
-    color: #fff;
+    color: #ffffff;
     border-color: #1a1a1a;
+  }
+
+  .collection-block {
+    margin-bottom: 3.5rem;
   }
 
   .collection-title {
     font-family: var(--font-serif);
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 400;
-    margin: 2.5rem 0 1.2rem 0;
-    padding-bottom: 0.4rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border-color);
   }
 
   .works-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
   }
 
   .work-card {
     display: flex;
     flex-direction: column;
-    background: #fff;
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    padding: 1rem;
+    padding: 1.2rem;
+    border-radius: 4px;
   }
 
   .image-container {
-    aspect-ratio: 4 / 3;
-    background: #f4f4f0;
-    overflow: hidden;
-    margin-bottom: 0.8rem;
+    width: 100%;
+    height: 320px;
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
 
   .image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
   }
 
   .inv-code {
     font-family: monospace;
     font-size: 0.75rem;
     color: var(--text-muted);
+    letter-spacing: 0.05em;
   }
 
   .work-title {
     font-family: var(--font-serif);
-    font-size: 1.05rem;
-    margin: 0.2rem 0 0.4rem 0;
+    font-size: 1.1rem;
+    margin: 0.3rem 0 0.5rem 0;
     font-weight: 400;
+    line-height: 1.3;
   }
 
   .work-details {
     font-size: 0.85rem;
     color: var(--text-muted);
-    margin: 0;
+    margin: 0.15rem 0;
+    line-height: 1.4;
   }
 
   .card-footer {
-    margin-top: 0.8rem;
-    padding-top: 0.5rem;
+    margin-top: auto;
+    padding-top: 0.8rem;
     border-top: 1px dashed var(--border-color);
     display: flex;
     justify-content: space-between;
@@ -107,10 +133,12 @@ title: Catalogue of Works
   }
 
   .badge {
-    font-size: 0.75rem;
-    padding: 0.15rem 0.4rem;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
     border-radius: 3px;
     text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
   }
 
   .badge-available { background: #e6f4ea; color: #137333; }
@@ -121,7 +149,7 @@ title: Catalogue of Works
     nav, footer, .filter-bar { display: none !important; }
     .collection-block { page-break-before: always; }
     .works-grid { display: block; }
-    .work-card { page-break-inside: avoid; margin-bottom: 1.5rem; }
+    .work-card { page-break-inside: avoid; margin-bottom: 2rem; background: #fff; }
   }
 </style>
 
@@ -131,9 +159,9 @@ title: Catalogue of Works
   </header>
 
   <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterWorks('all')">All Works</button>
-    <button class="filter-btn" onclick="filterWorks('Available')">Available</button>
-    <button class="filter-btn" onclick="filterWorks('Sold')">Sold</button>
+    <button class="filter-btn active" onclick="filterWorks('all', event)">All Works</button>
+    <button class="filter-btn" onclick="filterWorks('Available', event)">Available</button>
+    <button class="filter-btn" onclick="filterWorks('Sold', event)">Sold</button>
   </div>
 
   {% assign collections = site.data.catalogue | group_by: "collection" %}
@@ -144,9 +172,9 @@ title: Catalogue of Works
       <div class="works-grid">
         {% for work in col.items %}
           <div class="work-card {{ work.status }}">
-           <div class="image-container">
-  <img src="/assets/images/catalogue/{{ work.image }}" alt="{{ work.title }}" loading="lazy" />
-</div>
+            <div class="image-container">
+              <img src="/assets/images/catalogue/{{ work.image }}" alt="{{ work.title }}" loading="lazy" />
+            </div>
             <span class="inv-code">{{ work.id }}</span>
             <h3 class="work-title"><em>{{ work.title }}</em> ({{ work.year }})</h3>
             <p class="work-details">{{ work.medium }}</p>
@@ -163,10 +191,10 @@ title: Catalogue of Works
 </div>
 
 <script>
-  function filterWorks(status) {
+  function filterWorks(status, evt) {
     const buttons = document.querySelectorAll('.filter-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    evt.target.classList.add('active');
 
     const cards = document.querySelectorAll('.work-card');
     cards.forEach(card => {
