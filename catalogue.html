@@ -4,70 +4,191 @@ title: Catalogue of Works
 ---
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600;700&display=swap');
+
   :root {
-    --font-serif: "Georgia", "Times New Roman", serif;
-    --border-color: #e5e5e0;
-    --text-muted: #666666;
+    --font-mono: 'Space Mono', monospace, Courier;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --border-black: #000000;
+    --bg-page: #fdfdfd;
     --bg-card: #ffffff;
+    --bg-muted: #f5f5f0;
   }
 
-  .catalogue-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
+  body {
+    background-color: var(--bg-page);
+    color: #000000;
+    font-family: var(--font-sans);
   }
 
-  .catalogue-header {
-    margin-bottom: 2rem;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 1rem;
+  /* Main Container Box */
+  .catalogue-wrapper {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 2.5rem 2rem;
+    border: 2.5px solid var(--border-black);
+    box-shadow: 7px 7px 0px var(--border-black);
+    background: #ffffff;
   }
 
-  .catalogue-header h1 {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: 2.2rem;
-    margin: 0;
-  }
-
-  .filter-bar {
+  /* Navigation Header */
+  .top-nav {
     display: flex;
-    gap: 0.5rem;
-    margin-bottom: 2.5rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2.5px solid var(--border-black);
+    padding-bottom: 1.2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav-brand {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+    color: #000;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.6rem;
     flex-wrap: wrap;
   }
 
-  .filter-btn {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    padding: 0.4rem 1rem;
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #000;
+    border: 1.5px solid var(--border-black);
+    padding: 0.4rem 0.8rem;
+    background: #fff;
+    box-shadow: 2.5px 2.5px 0px var(--border-black);
+    transition: all 0.1s ease;
+  }
+
+  .nav-link:hover, .nav-link.active {
+    background: #000;
+    color: #fff;
+  }
+
+  .nav-link:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px var(--border-black);
+  }
+
+  /* Page Header Title */
+  .header-block {
+    margin-bottom: 2.5rem;
+  }
+
+  .header-title {
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 0 0.4rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .header-subtitle {
+    font-family: var(--font-mono);
     font-size: 0.85rem;
-    border-radius: 4px;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+
+  /* Filter & Jump Navigation Bar */
+  .controls-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    background: var(--bg-muted);
+    border: 2px solid var(--border-black);
+    padding: 1.2rem;
+    margin-bottom: 3rem;
+  }
+
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .control-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #555;
+    min-width: 110px;
+  }
+
+  .filter-btn, .jump-btn {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: #ffffff;
+    color: #000000;
+    border: 1.5px solid var(--border-black);
+    padding: 0.4rem 0.9rem;
     cursor: pointer;
+    box-shadow: 2.5px 2.5px 0px var(--border-black);
+    text-decoration: none;
+    transition: all 0.1s ease;
   }
 
-  .filter-btn.active, .filter-btn:hover {
-    background: #1a1a1a;
-    color: #ffffff;
-    border-color: #1a1a1a;
+  .filter-btn:hover, .jump-btn:hover {
+    background: #000;
+    color: #fff;
   }
 
+  .filter-btn.active {
+    background: #000;
+    color: #fff;
+  }
+
+  /* Collection Sections */
   .collection-block {
-    margin-bottom: 3.5rem;
+    margin-bottom: 4rem;
+    scroll-margin-top: 2rem;
+  }
+
+  .collection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid var(--border-black);
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.8rem;
   }
 
   .collection-title {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-mono);
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: -0.01em;
   }
 
+  .collection-count {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  /* Works Grid & Cards */
   .works-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
   }
 
@@ -75,87 +196,155 @@ title: Catalogue of Works
     display: flex;
     flex-direction: column;
     background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    border: 2px solid var(--border-black);
     padding: 1.2rem;
-    border-radius: 4px;
+    box-shadow: 4px 4px 0px var(--border-black);
+    transition: transform 0.15s ease;
+  }
+
+  .work-card:hover {
+    transform: translateY(-3px);
   }
 
   .image-container {
     width: 100%;
-    min-height: 250px;
-    background: #fafafa;
-    border: 1px solid #f0f0f0;
+    height: 320px;
+    background: var(--bg-muted);
+    border: 1.5px solid var(--border-black);
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
 
   .image-container img {
     max-width: 100%;
-    height: auto;
-    max-height: 350px;
+    max-height: 100%;
     object-fit: contain;
     display: block;
   }
 
   .inv-code {
-    font-family: monospace;
+    font-family: var(--font-mono);
     font-size: 0.75rem;
-    color: var(--text-muted);
+    color: #555555;
+    margin-bottom: 0.3rem;
   }
 
   .work-title {
-    font-family: var(--font-serif);
-    font-size: 1.1rem;
-    margin: 0.3rem 0 0.5rem 0;
-    font-weight: 400;
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
   }
 
   .work-details {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: #333333;
     margin: 0.15rem 0;
+    line-height: 1.4;
   }
 
   .card-footer {
     margin-top: auto;
-    padding-top: 0.8rem;
-    border-top: 1px dashed var(--border-color);
+    padding-top: 0.9rem;
+    border-top: 1.5px solid var(--border-black);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: var(--font-mono);
     font-size: 0.85rem;
   }
 
   .badge {
+    font-family: var(--font-mono);
     font-size: 0.7rem;
     padding: 0.2rem 0.5rem;
-    border-radius: 3px;
+    border: 1.5px solid var(--border-black);
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 700;
   }
 
-  .badge-available { background: #e6f4ea; color: #137333; }
-  .badge-sold { background: #fce8e6; color: #c5221f; }
+  .badge-available { background: #e6f4ea; color: #000000; }
+  .badge-sold { background: #fce8e6; color: #000000; }
+
+  /* Footer Section */
+  .catalogue-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2.5px solid var(--border-black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: #555;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .catalogue-footer a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .catalogue-wrapper { border: none; box-shadow: none; padding: 0; }
+    .top-nav, .controls-bar, .catalogue-footer { display: none !important; }
+    .collection-block { page-break-before: always; }
+    .works-grid { display: block; }
+    .work-card { page-break-inside: avoid; margin-bottom: 2rem; box-shadow: none; }
+  }
 </style>
 
-<div class="catalogue-container">
-  <header class="catalogue-header">
-    <h1>Catalogue of Works</h1>
+<div class="catalogue-wrapper">
+  <!-- Top Synced Header Navigation -->
+  <nav class="top-nav">
+    <a href="/" class="nav-brand">MANSI GUPTA</a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">[ HOME ]</a>
+      <a href="/catalogue" class="nav-link active">[ CATALOGUE ]</a>
+      <a href="mailto:contact@mansigupta.in" class="nav-link">[ INQUIRE ]</a>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="header-block">
+    <h1 class="header-title">Catalogue of Works</h1>
+    <p class="header-subtitle">[ Original Paintings — Ink, Watercolors & Mixed Media ]</p>
   </header>
 
-  <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterWorks('all', event)">All Works</button>
-    <button class="filter-btn" onclick="filterWorks('Available', event)">Available</button>
-    <button class="filter-btn" onclick="filterWorks('Sold', event)">Sold</button>
+  <!-- Interactive Controls: Filtering & Navigation -->
+  <div class="controls-bar">
+    <div class="control-group">
+      <span class="control-label">FILTER STATUS:</span>
+      <button class="filter-btn active" onclick="filterWorks('all', event)">[ ALL WORKS ]</button>
+      <button class="filter-btn" onclick="filterWorks('Available', event)">[ AVAILABLE ]</button>
+      <button class="filter-btn" onclick="filterWorks('Sold', event)">[ SOLD ]</button>
+    </div>
+
+    <div class="control-group">
+      <span class="control-label">JUMP TO SERIES:</span>
+      {% assign collections = site.data.catalogue | group_by: "collection" %}
+      {% for col in collections %}
+        {% assign col_slug = col.name | slugify %}
+        <a href="#{{ col_slug }}" class="jump-btn">/ {{ col.name }}</a>
+      {% endfor %}
+    </div>
   </div>
 
-  {% assign collections = site.data.catalogue | group_by: "collection" %}
-
+  <!-- Collections List -->
   {% for col in collections %}
-    <div class="collection-block">
-      <h2 class="collection-title">{{ col.name }}</h2>
+    {% assign col_slug = col.name | slugify %}
+    <section id="{{ col_slug }}" class="collection-block">
+      <div class="collection-header">
+        <h2 class="collection-title">/ {{ col.name }}</h2>
+        <span class="collection-count">[{{ col.items | size }} WORKS]</span>
+      </div>
+      
       <div class="works-grid">
         {% for work in col.items %}
           {% assign clean_img = work.image | strip %}
@@ -168,7 +357,7 @@ title: Catalogue of Works
               />
             </div>
             <span class="inv-code">{{ work.id }}</span>
-            <h3 class="work-title"><em>{{ work.title }}</em> ({{ work.year }})</h3>
+            <h3 class="work-title">{{ work.title }} ({{ work.year }})</h3>
             <p class="work-details">{{ work.medium }}</p>
             <p class="work-details">{{ work.dimensions }}</p>
             <div class="card-footer">
@@ -178,8 +367,14 @@ title: Catalogue of Works
           </div>
         {% endfor %}
       </div>
-    </div>
+    </section>
   {% endfor %}
+
+  <!-- Footer -->
+  <footer class="catalogue-footer">
+    <span>© 2026 Mansi Gupta</span>
+    <span>Inquiries & Acquisitions: <a href="mailto:contact@mansigupta.in">contact@mansigupta.in</a></span>
+  </footer>
 </div>
 
 <script>
