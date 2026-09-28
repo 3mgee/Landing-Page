@@ -1,0 +1,181 @@
+---
+layout: default
+title: Catalogue of Works
+---
+
+<style>
+  :root {
+    --font-serif: "Georgia", "Times New Roman", serif;
+    --border-color: #e5e5e0;
+    --text-muted: #666666;
+  }
+
+  .catalogue-header {
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+  }
+
+  .collection-title {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin: 2.5rem 0 1.2rem 0;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+  }
+
+  .image-container {
+    aspect-ratio: 4 / 3;
+    background: #f4f4f0;
+    overflow: hidden;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .inv-code {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .work-title {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    margin: 0.2rem 0 0.4rem 0;
+    font-weight: 400;
+  }
+
+  .work-details {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .card-footer {
+    margin-top: 0.8rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+
+  .badge-available { background: #e6f4ea; color: #137333; }
+  .badge-sold { background: #fce8e6; color: #c5221f; }
+  .badge-consigned { background: #fef7e0; color: #b06000; }
+
+  @media print {
+    nav, footer, .filter-bar { display: none !important; }
+    .collection-block { page-break-before: always; }
+    .works-grid { display: block; }
+    .work-card { page-break-inside: avoid; margin-bottom: 1.5rem; }
+  }
+</style>
+
+<div class="catalogue-container">
+  <header class="catalogue-header">
+    <h1>Catalogue of Works</h1>
+  </header>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterWorks('all')">All Works</button>
+    <button class="filter-btn" onclick="filterWorks('Available')">Available</button>
+    <button class="filter-btn" onclick="filterWorks('Sold')">Sold</button>
+  </div>
+
+  {% assign collections = site.data.catalogue | group_by: "collection" %}
+
+  {% for col in collections %}
+    <div class="collection-block">
+      <h2 class="collection-title">{{ col.name }}</h2>
+      <div class="works-grid">
+        {% for work in col.items %}
+          <div class="work-card {{ work.status }}">
+            <div class="image-container">
+              {% assign img_url = "/assets/images/catalogue/" | append: work.image %}
+              <img src="{{ img_url | relative_url }}" alt="{{ work.title }}" loading="lazy" />
+            </div>
+            <span class="inv-code">{{ work.id }}</span>
+            <h3 class="work-title"><em>{{ work.title }}</em> ({{ work.year }})</h3>
+            <p class="work-details">{{ work.medium }}</p>
+            <p class="work-details">{{ work.dimensions }}</p>
+            <div class="card-footer">
+              <span class="badge badge-{{ work.status | downcase }}">{{ work.status }}</span>
+              <strong>{{ work.price }}</strong>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+  function filterWorks(status) {
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const cards = document.querySelectorAll('.work-card');
+    cards.forEach(card => {
+      if (status === 'all' || card.classList.contains(status)) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
