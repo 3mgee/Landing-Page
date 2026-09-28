@@ -1,0 +1,56 @@
+name: Convert Catalogue CSV to YAML
+
+on:
+  push:
+    paths:
+      - 'catalogue.csv'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Convert CSV to _data/catalogue.yml
+        run: |
+          python -c "
+          import csv, json, os
+
+          with open('catalogue.csv', 'r', encoding='utf-8') as f:
+              data = list(csv.DictReader(f))
+
+          for row in data:
+              if row.get('image') and not row['image'].lower().endswith(('.jpg', '.jpeg', '.png', '.webp')):
+                  row['image'] = row['image'] + '.jpg'
+
+          os.makedirs('_data', exist_ok=True)
+          
+          with open('_data/catalogue.yml', 'w', encoding='utf-8') as f:
+              for item in data:
+                  f.write('- collection: ' + json.dumps(item['collection']) + '\n')
+                  f.write('  id: ' + json.dumps(item['id']) + '\n')
+                  f.write('  title: ' + json.dumps(item['title']) + '\n')
+                  f.write('  year: ' + str(item['year']) + '\n')
+                  f.write('  medium: ' + json.dumps(item['medium']) + '\n')
+                  f.write('  dimensions: ' + json.dumps(item['dimensions']) + '\n')
+                  f.write('  status: ' + json.dumps(item['status']) + '\n')
+                  f.write('  price: ' + json.dumps(item['price']) + '\n')
+                  f.write('  image: ' + json.dumps(item['image']) + '\n\n')
+          "
+
+      - name: Commit Updated YAML
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add _data/catalogue.yml
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-convert catalogue.csv to YAML" && git push)
