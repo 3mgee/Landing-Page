@@ -144,10 +144,9 @@ title: Catalogue of Works
       <div class="works-grid">
         {% for work in col.items %}
           <div class="work-card {{ work.status }}">
-            <div class="image-container">
-              {% assign img_url = "/assets/images/catalogue/" | append: work.image %}
-              <img src="{{ img_url | relative_url }}" alt="{{ work.title }}" loading="lazy" />
-            </div>
+           <div class="image-container">
+  <img src="/assets/images/catalogue/{{ work.image }}" alt="{{ work.title }}" loading="lazy" />
+</div>
             <span class="inv-code">{{ work.id }}</span>
             <h3 class="work-title"><em>{{ work.title }}</em> ({{ work.year }})</h3>
             <p class="work-details">{{ work.medium }}</p>
