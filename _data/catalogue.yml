@@ -1,0 +1,80 @@
+- collection: "The Weight of It"
+  id: "2026-WOI-220826"
+  title: "The Weight of It 220826"
+  year: 2026
+  medium: "Watercolour, ink, colour pencils"
+  dimensions: "30 x 22 in"
+  status: "Available"
+  price: "\u20b985,000"
+  image: "MansiGupta_TheWeightofit22082026_WatercolourMixedMedia_30x22in.jpg"
+
+- collection: "The Weight of It"
+  id: "2026-WOI-020926"
+  title: "The Weight of It 020926"
+  year: 2026
+  medium: "Watercolour, ink, colour pencils"
+  dimensions: "22 x 30 in"
+  status: "Available"
+  price: "\u20b985,000"
+  image: "MansiGupta_TheWeightofit02092026_WatercolourMixedMedia_22x30in.jpg"
+
+- collection: "The Weight of It"
+  id: "2026-WOI-150926"
+  title: "The Weight of It 150926"
+  year: 2026
+  medium: "Watercolour, gouache"
+  dimensions: "22 x 30 in"
+  status: "Available"
+  price: "\u20b975,000"
+  image: "MansiGupta_TheWeightofit15092026_WatercolourMixedMedia_22x30in.jpg"
+
+- collection: "Nowhere, Elsewhere"
+  id: "2026-NOE-110126"
+  title: "Nowhere Elsewhere 110126"
+  year: 2026
+  medium: "Watercolour, mixed media"
+  dimensions: "30 x 11 in"
+  status: "Available"
+  price: "\u20b965,000"
+  image: "MansiGupta_NowhereElsewhere110126_WatercolourMixedMedia_30x11in_2026.jpg"
+
+- collection: "Nowhere, Elsewhere"
+  id: "2026-NOE-170826"
+  title: "Nowhere Elsewhere 170826"
+  year: 2026
+  medium: "Watercolour, mixed media"
+  dimensions: "30 x 22 in"
+  status: "Available"
+  price: "\u20b985,000"
+  image: "MansiGupta_NowhereElsewhere170826_WatercolourMixedMedia_30x22in_2026.jpg"
+
+- collection: "Nowhere, Elsewhere"
+  id: "2026-NOE-280326"
+  title: "Nowhere Elsewhere 280326"
+  year: 2026
+  medium: "Watercolour, mixed media"
+  dimensions: "20 x 14 in"
+  status: "Available"
+  price: "\u20b965,000"
+  image: "MansiGupta_NowhereElsewhere280326_WatercolourMixedMedia_20x14in_2026.jpg"
+
+- collection: "Light in Shade"
+  id: "2026-LIS-200925"
+  title: "Light in Shade 200925"
+  year: 2026
+  medium: "Watercolour, mixed media"
+  dimensions: "30 x 22 in"
+  status: "Available"
+  price: "\u20b965,000"
+  image: "MansiGupta_LightinShade200925_WatercolourMixedMedia_28x20in_2025.jpg"
+
+- collection: "Light in Shade"
+  id: "2026-LIS-250825"
+  title: "Light in Shade 250825"
+  year: 2026
+  medium: "Watercolour, mixed media"
+  dimensions: "15 x 22 in"
+  status: "Available"
+  price: "\u20b945,000"
+  image: "MansiGupta_LightinShade250825_WatercolourMixedMedia_13x20in_2025.jpg"
+
