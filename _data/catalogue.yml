@@ -6,7 +6,7 @@
   dimensions: "30 x 22 in"
   status: "Available"
   price: "\u20b985,000"
-  image: "MansiGupta_TheWeightofit22082026_WatercolourMixedMedia_30x22in.jpg"
+  image: "MansiGupta_TheWeightofit22082026_WatercolourMixedMedia_30x22in.jpeg"
 
 - collection: "The Weight of It"
   id: "2026-WOI-020926"
@@ -16,7 +16,7 @@
   dimensions: "22 x 30 in"
   status: "Available"
   price: "\u20b985,000"
-  image: "MansiGupta_TheWeightofit02092026_WatercolourMixedMedia_22x30in.jpg"
+  image: "MansiGupta_TheWeightofit02092026_WatercolourMixedMedia_22x30in.jpeg"
 
 - collection: "The Weight of It"
   id: "2026-WOI-150926"
@@ -26,7 +26,7 @@
   dimensions: "22 x 30 in"
   status: "Available"
   price: "\u20b975,000"
-  image: "MansiGupta_TheWeightofit15092026_WatercolourMixedMedia_22x30in.jpg"
+  image: "MansiGupta_TheWeightofit15092026_WatercolourMixedMedia_22x30in.jpeg"
 
 - collection: "Nowhere, Elsewhere"
   id: "2026-NOE-110126"
@@ -36,7 +36,7 @@
   dimensions: "30 x 11 in"
   status: "Available"
   price: "\u20b965,000"
-  image: "MansiGupta_NowhereElsewhere110126_WatercolourMixedMedia_30x11in_2026.jpg"
+  image: "MansiGupta_NowhereElsewhere110126_WatercolourMixedMedia_30x11in_2026.jpeg"
 
 - collection: "Nowhere, Elsewhere"
   id: "2026-NOE-170826"
@@ -46,7 +46,7 @@
   dimensions: "30 x 22 in"
   status: "Available"
   price: "\u20b985,000"
-  image: "MansiGupta_NowhereElsewhere170826_WatercolourMixedMedia_30x22in_2026.jpg"
+  image: "MansiGupta_NowhereElsewhere170826_WatercolourMixedMedia_30x22in_2026.jpeg"
 
 - collection: "Nowhere, Elsewhere"
   id: "2026-NOE-280326"
@@ -56,7 +56,7 @@
   dimensions: "20 x 14 in"
   status: "Available"
   price: "\u20b965,000"
-  image: "MansiGupta_NowhereElsewhere280326_WatercolourMixedMedia_20x14in_2026.jpg"
+  image: "MansiGupta_NowhereElsewhere280326_WatercolourMixedMedia_20x14in_2026.jpeg"
 
 - collection: "Light in Shade"
   id: "2026-LIS-200925"
@@ -66,7 +66,7 @@
   dimensions: "30 x 22 in"
   status: "Available"
   price: "\u20b965,000"
-  image: "MansiGupta_LightinShade200925_WatercolourMixedMedia_28x20in_2025.jpg"
+  image: "MansiGupta_LightinShade200925_WatercolourMixedMedia_28x20in_2025.jpeg"
 
 - collection: "Light in Shade"
   id: "2026-LIS-250825"
@@ -76,7 +76,7 @@
   dimensions: "15 x 22 in"
   status: "Available"
   price: "\u20b945,000"
-  image: "MansiGupta_LightinShade250825_WatercolourMixedMedia_13x20in_2025.jpg"
+  image: "MansiGupta_LightinShade250825_WatercolourMixedMedia_13x20in_2025.jpeg"
 
 - collection: "Be Here Now"
   id: "2024-BHN-010624"
@@ -86,7 +86,7 @@
   dimensions: "5.8 x 8.3 in"
   status: "Available"
   price: "\u20b98,000"
-  image: "MansiGupta_BeHereNow_010624.jpg"
+  image: "MansiGupta_BeHereNow_010624.jpeg"
 
 - collection: "Be Here Now"
   id: "2024-BHN-060624"
@@ -106,7 +106,7 @@
   dimensions: "8.3 x 11.7 in"
   status: "Sold"
   price: ""
-  image: "MansiGupta_BeHereNow_100724.jpg"
+  image: "MansiGupta_BeHereNow_100724.jpeg"
 
 - collection: "Be Here Now"
   id: "2024-BHN-190624"
@@ -136,7 +136,7 @@
   dimensions: "4.1 x 5.8 in"
   status: "Available"
   price: "\u20b96,000"
-  image: "MansiGupta_BeHereNow_230324.jpg"
+  image: "MansiGupta_BeHereNow_230324.jpeg"
 
 - collection: "Be Here Now"
   id: "2024-BHN-310324"
@@ -146,7 +146,7 @@
   dimensions: "11.7 x 8.3 in"
   status: "Available"
   price: "\u20b922,000"
-  image: "MansiGupta_BeHereNow_310324.jpg"
+  image: "MansiGupta_BeHereNow_310324.jpeg"
 
 - collection: "Be Here Now"
   id: "2025-BHN-070325"
@@ -156,7 +156,7 @@
   dimensions: "20 x 14 in"
   status: "Available"
   price: "\u20b945,000"
-  image: "MansiGupta_BeHereNow_070325.jpg"
+  image: "MansiGupta_BeHereNow_070325.jpeg"
 
 - collection: "Be Here Now"
   id: "2024-BHN-070624"
@@ -166,7 +166,7 @@
   dimensions: "5.8 in x 8.3 in"
   status: "Available"
   price: "\u20b98,000"
-  image: "MansiGupta_BeHereNow_070624.jpg"
+  image: "MansiGupta_BeHereNow_070624.jpeg"
 
 - collection: "Be Here Now"
   id: "2025-BHN-120125"
@@ -176,7 +176,7 @@
   dimensions: "11 x 14 in"
   status: "Available"
   price: "\u20b932,000"
-  image: "MansiGupta_BeHereNow_120125.jpg"
+  image: "MansiGupta_BeHereNow_120125.jpeg"
 
 - collection: "Be Here Now"
   id: "2025-BHN-260225"
@@ -186,7 +186,7 @@
   dimensions: "11 x 11 in"
   status: "Available"
   price: "\u20b926,000"
-  image: "MansiGupta_BeHereNow_260225.jpg"
+  image: "MansiGupta_BeHereNow_260225.jpeg"
 
 - collection: "Be Here Now"
   id: "2025-BHN-270225"
@@ -196,7 +196,7 @@
   dimensions: "11 x 14 in"
   status: "Available"
   price: "\u20b932,000"
-  image: "MansiGupta_BeHereNow_270225.jpg"
+  image: "MansiGupta_BeHereNow_270225.jpeg"
 
 - collection: "Be Here Now"
   id: "2024-BHN-281224"
@@ -206,7 +206,7 @@
   dimensions: "11 x 14 in"
   status: "Available"
   price: "\u20b932,000"
-  image: "MansiGupta_BeHereNow_281224.jpg"
+  image: "MansiGupta_BeHereNow_281224.jpeg"
 
 - collection: "Lost in the Line"
   id: "2025-LIL-170425"
@@ -246,7 +246,7 @@
   dimensions: "4.1 x 5.8 in"
   status: "Available"
   price: "\u20b96,000"
-  image: "MansiGupta_LostInTheLine_020824.jpg"
+  image: "MansiGupta_LostInTheLine_020824.jpeg"
 
 - collection: "Lost in the Line"
   id: "2025-LIL-030125"
@@ -276,7 +276,7 @@
   dimensions: "5.8 x 8.3 in"
   status: "Available"
   price: "\u20b98,000"
-  image: "MansiGupta_LostInTheLine_040624.jpg"
+  image: "MansiGupta_LostInTheLine_040624.jpeg"
 
 - collection: "Lost in the Line"
   id: "2025-LIL-280125"
@@ -286,7 +286,7 @@
   dimensions: "8.3 x 11.7 in"
   status: "Available"
   price: "\u20b922,000"
-  image: "MansiGupta_LostInTheLine_280125.jpg"
+  image: "MansiGupta_LostInTheLine_280125.jpeg"
 
 - collection: "Lost in the Line"
   id: "2024-LIL-291124"
@@ -296,5 +296,5 @@
   dimensions: "8.3 x 11.7 in"
   status: "Available"
   price: "\u20b922,000"
-  image: "MansiGupta_LostInTheLine_291124.jpg"
+  image: "MansiGupta_LostInTheLine_291124.jpeg"
 
