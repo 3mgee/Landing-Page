@@ -78,3 +78,223 @@
   price: "\u20b945,000"
   image: "MansiGupta_LightinShade250825_WatercolourMixedMedia_13x20in_2025.jpg"
 
+- collection: "Be Here Now"
+  id: "2024-BHN-010624"
+  title: "Be Here Now 010624"
+  year: 2024
+  medium: "Watercolour, ink, on paper"
+  dimensions: "5.8 x 8.3 in"
+  status: "Available"
+  price: "\u20b98,000"
+  image: "MansiGupta_BeHereNow_010624.jpg"
+
+- collection: "Be Here Now"
+  id: "2024-BHN-060624"
+  title: "Be Here Now 060624"
+  year: 2024
+  medium: "Watercolour, ink, on paper"
+  dimensions: "4.1 x 5.8 in"
+  status: "Available"
+  price: "\u20b96,000"
+  image: "MansiGupta_BeHereNow_060624-1.jpeg"
+
+- collection: "Be Here Now"
+  id: "2024-BHN-100724"
+  title: "Be Here Now 100724"
+  year: 2024
+  medium: "Watercolour, ink, on paper"
+  dimensions: "8.3 x 11.7 in"
+  status: "Sold"
+  price: ""
+  image: "MansiGupta_BeHereNow_100724.jpg"
+
+- collection: "Be Here Now"
+  id: "2024-BHN-190624"
+  title: "Be Here Now 190624"
+  year: 2024
+  medium: "Watercolour, ink, on paper"
+  dimensions: "11.7 x 8.3 in"
+  status: "Available"
+  price: "\u20b922,000"
+  image: "MansiGupta_BeHereNow_190624.jpeg"
+
+- collection: "Be Here Now"
+  id: "2024-BHN-200524"
+  title: "Be Here Now 200524"
+  year: 2024
+  medium: "Watercolour, ink, on paper"
+  dimensions: "5.8 in x 8.3 in"
+  status: "Available"
+  price: "\u20b98,000"
+  image: "MansiGupta_BeHereNow_200524.jpeg"
+
+- collection: "Be Here Now"
+  id: "2024-BHN-230324"
+  title: "Be Here Now 230324"
+  year: 2024
+  medium: "Watercolour, ink, on paper"
+  dimensions: "4.1 x 5.8 in"
+  status: "Available"
+  price: "\u20b96,000"
+  image: "MansiGupta_BeHereNow_230324.jpg"
+
+- collection: "Be Here Now"
+  id: "2024-BHN-310324"
+  title: "Be Here Now 310324"
+  year: 2024
+  medium: "Watercolour, ink, on paper"
+  dimensions: "11.7 x 8.3 in"
+  status: "Available"
+  price: "\u20b922,000"
+  image: "MansiGupta_BeHereNow_310324.jpg"
+
+- collection: "Be Here Now"
+  id: "2025-BHN-070325"
+  title: "Be Here Now 070325"
+  year: 2025
+  medium: "Watercolour, ink, on paper"
+  dimensions: "20 x 14 in"
+  status: "Available"
+  price: "\u20b945,000"
+  image: "MansiGupta_BeHereNow_070325.jpg"
+
+- collection: "Be Here Now"
+  id: "2024-BHN-070624"
+  title: "Be Here Now 070624"
+  year: 2024
+  medium: "Watercolour, ink, on paper"
+  dimensions: "5.8 in x 8.3 in"
+  status: "Available"
+  price: "\u20b98,000"
+  image: "MansiGupta_BeHereNow_070624.jpg"
+
+- collection: "Be Here Now"
+  id: "2025-BHN-120125"
+  title: "Be Here Now 120125"
+  year: 2025
+  medium: "Watercolour, ink, on paper"
+  dimensions: "11 x 14 in"
+  status: "Available"
+  price: "\u20b932,000"
+  image: "MansiGupta_BeHereNow_120125.jpg"
+
+- collection: "Be Here Now"
+  id: "2025-BHN-260225"
+  title: "Be Here Now 260225"
+  year: 2025
+  medium: "Watercolour, ink, on paper"
+  dimensions: "11 x 11 in"
+  status: "Available"
+  price: "\u20b926,000"
+  image: "MansiGupta_BeHereNow_260225.jpg"
+
+- collection: "Be Here Now"
+  id: "2025-BHN-270225"
+  title: "Be Here Now 270225"
+  year: 2025
+  medium: "Watercolour, ink, on paper"
+  dimensions: "11 x 14 in"
+  status: "Available"
+  price: "\u20b932,000"
+  image: "MansiGupta_BeHereNow_270225.jpg"
+
+- collection: "Be Here Now"
+  id: "2024-BHN-281224"
+  title: "Be Here Now 281224"
+  year: 2024
+  medium: "Watercolour, ink, on paper"
+  dimensions: "11 x 14 in"
+  status: "Available"
+  price: "\u20b932,000"
+  image: "MansiGupta_BeHereNow_281224.jpg"
+
+- collection: "Lost in the Line"
+  id: "2025-LIL-170425"
+  title: "Lost in the Line 170425"
+  year: 2025
+  medium: "Fountain pen, ink on paper"
+  dimensions: "30 x 22 in"
+  status: "Available"
+  price: "\u20b945,000"
+  image: "MansiGupta_LostInTheLine_170425.jpeg"
+
+- collection: "Lost in the Line"
+  id: "2024-LIL-005242"
+  title: "Lost in the Line _000524-2"
+  year: 2024
+  medium: "Fountain pen, ink on paper"
+  dimensions: "4.1 x 5.8 in"
+  status: "Available"
+  price: "\u20b96,000"
+  image: "MansiGupta_LostInTheLine_000524-2.jpeg"
+
+- collection: "Lost in the Line"
+  id: "2024-LIL-000524"
+  title: "Lost in the Line 000524"
+  year: 2024
+  medium: "Fountain pen, ink on paper"
+  dimensions: "4.1 x 5.8 in"
+  status: "Available"
+  price: "\u20b96,000"
+  image: "MansiGupta_LostInTheLine_000524.jpeg"
+
+- collection: "Lost in the Line"
+  id: "2024-LIL-020824"
+  title: "Lost in the Line 020824"
+  year: 2024
+  medium: "Fountain pen, ink on paper"
+  dimensions: "4.1 x 5.8 in"
+  status: "Available"
+  price: "\u20b96,000"
+  image: "MansiGupta_LostInTheLine_020824.jpg"
+
+- collection: "Lost in the Line"
+  id: "2025-LIL-030125"
+  title: "Lost in the Line 030125"
+  year: 2025
+  medium: "Fountain pen, ink on paper"
+  dimensions: "8.3 x 11.7 in"
+  status: "Available"
+  price: "\u20b922,000"
+  image: "MansiGupta_LostInTheLine_030125.jpeg"
+
+- collection: "Lost in the Line"
+  id: "2024-LIL-030524"
+  title: "Lost in the Line 030524"
+  year: 2024
+  medium: "Fountain pen, ink on paper"
+  dimensions: "4.1 x 5.8 in"
+  status: "Available"
+  price: "\u20b96,000"
+  image: "MansiGupta_LostInTheLine_030524.jpeg"
+
+- collection: "Lost in the Line"
+  id: "2024-LIL-040624"
+  title: "Lost in the Line 040624"
+  year: 2024
+  medium: "Fountain pen, ink on paper"
+  dimensions: "5.8 x 8.3 in"
+  status: "Available"
+  price: "\u20b98,000"
+  image: "MansiGupta_LostInTheLine_040624.jpg"
+
+- collection: "Lost in the Line"
+  id: "2025-LIL-280125"
+  title: "Lost in the Line 280125"
+  year: 2025
+  medium: "Fountain pen, ink on paper"
+  dimensions: "8.3 x 11.7 in"
+  status: "Available"
+  price: "\u20b922,000"
+  image: "MansiGupta_LostInTheLine_280125.jpg"
+
+- collection: "Lost in the Line"
+  id: "2024-LIL-291124"
+  title: "Lost in the Line 291124"
+  year: 2024
+  medium: "Fountain pen, ink on paper"
+  dimensions: "8.3 x 11.7 in"
+  status: "Available"
+  price: "\u20b922,000"
+  image: "MansiGupta_LostInTheLine_291124.jpg"
+
