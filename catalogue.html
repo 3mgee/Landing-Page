@@ -1,0 +1,279 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#F4F4EF" />
+
+  <!-- NOINDEX: test site only. DELETE THIS LINE before merging to main / going live. -->
+  <meta name="robots" content="noindex" />
+
+  <!-- SEO -->
+  <title>Catalogue of Works — Mansi Gupta</title>
+  <meta name="description" content="Catalogue of original watercolour, ink and mixed-media works by Mansi Gupta, grouped by series, with sizes, status and prices." />
+  <meta name="author" content="Mansi Gupta" />
+  <link rel="canonical" href="https://www.mansigupta.in/catalogue" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232A56A5'/%3E%3Ctext x='50' y='68' font-size='56' font-family='monospace' font-weight='700' text-anchor='middle' fill='%23F4F4EF'%3EMG%3C/text%3E%3C/svg%3E" />
+
+  <!-- LINK PREVIEWS -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.mansigupta.in/catalogue" />
+  <meta property="og:title" content="Catalogue of Works — Mansi Gupta" />
+  <meta property="og:description" content="Original watercolour, ink and mixed-media works, grouped by series, with sizes, status and prices." />
+  <meta property="og:image" content="https://www.mansigupta.in/art-1.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  {%- assign all_works = site.data.catalogue -%}
+
+  <!-- STRUCTURED DATA: every work listed as a VisualArtwork (no purchase "offers": this is an archive, not a shop) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Catalogue of Works — Mansi Gupta",
+    "url": "https://www.mansigupta.in/catalogue",
+    "isPartOf": { "@type": "WebSite", "url": "https://www.mansigupta.in/", "name": "Mansi Gupta" },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": {{ all_works | size }},
+      "itemListElement": [
+      {%- for w in all_works %}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.index }},
+          "item": {
+            "@type": "VisualArtwork",
+            "name": {{ w.title | append: "" | jsonify }},
+            "creator": { "@type": "Person", "@id": "https://www.mansigupta.in/#artist", "name": "Mansi Gupta" },
+            "image": "https://www.mansigupta.in/assets/images/catalogue/{{ w.image | strip }}",
+            "dateCreated": {{ w.year | append: "" | jsonify }},
+            "artMedium": {{ w.medium | append: "" | jsonify }},
+            "description": {{ w.collection | append: ", " | append: w.medium | append: ", " | append: w.dimensions | jsonify }}
+          }
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor %}
+      ]
+    }
+  }
+  </script>
+
+  <!-- FONTS & STYLES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/site.css" />
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="wrap">
+    <header class="site-head">
+      <a class="brand" href="/">Mansi Gupta</a>
+      <nav aria-label="Primary">
+        <a class="opt" href="/">Home</a>
+        <a href="/catalogue" aria-current="page">Catalogue</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+  </div>
+
+  {%- assign n_series = 0 -%}
+  {%- for s in site.data.series -%}
+    {%- assign probe = all_works | where: "collection", s.name -%}
+    {%- if probe.size > 0 -%}{%- assign n_series = n_series | plus: 1 -%}{%- endif -%}
+  {%- endfor -%}
+
+  <main id="main">
+
+    <div class="wrap">
+      <div class="page-title">
+        <h1 class="page-h">Catalogue</h1>
+        <p>
+          {{ all_works | size }} original works in {{ n_series }} series. Sizes are in inches and centimetres, and prices are in Indian rupees.
+          To enquire about a work, email <a href="mailto:contact@mansigupta.in">contact@mansigupta.in</a> with its ID.
+        </p>
+      </div>
+    </div>
+
+    <!-- Sticky series bar -->
+    <nav class="series-nav" aria-label="Series">
+      <div class="wrap">
+        {%- for s in site.data.series -%}
+          {%- assign probe = all_works | where: "collection", s.name -%}
+          {%- if probe.size > 0 -%}
+            <a href="#{{ s.name | slugify }}">{{ s.name }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </nav>
+
+    <div class="wrap">
+      {%- for s in site.data.series -%}
+        {%- assign works = all_works | where: "collection", s.name -%}
+        {%- if works.size > 0 -%}
+          {%- assign series_index = forloop.index0 -%}
+
+          {%- assign n_avail = 0 -%}{%- assign n_sold = 0 -%}
+          {%- assign y_min = 9999 -%}{%- assign y_max = 0 -%}
+          {%- for w in works -%}
+            {%- assign y = w.year | plus: 0 -%}
+            {%- if y > 0 -%}
+              {%- if y < y_min -%}{%- assign y_min = y -%}{%- endif -%}
+              {%- if y > y_max -%}{%- assign y_max = y -%}{%- endif -%}
+            {%- endif -%}
+            {%- assign st = w.status | downcase | strip -%}
+            {%- if st == "available" -%}{%- assign n_avail = n_avail | plus: 1 -%}
+            {%- elsif st == "sold" -%}{%- assign n_sold = n_sold | plus: 1 -%}{%- endif -%}
+          {%- endfor -%}
+
+          <section class="series-block" id="{{ s.name | slugify }}" aria-labelledby="h-{{ s.name | slugify }}">
+            <div class="series-head">
+              <div>
+                <h2 id="h-{{ s.name | slugify }}">{{ s.name }}</h2>
+                <p class="facts">
+                  <span>
+                    {{- works.size }} {% if works.size == 1 %}work{% else %}works{% endif -%}
+                    {%- if n_avail > 0 %}, {{ n_avail }} available{% endif -%}
+                    {%- if n_sold > 0 %}, {{ n_sold }} sold{% endif -%}
+                    {%- if y_max > 0 %}, {% if y_min == y_max %}{{ y_min }}{% else %}{{ y_min }}–{{ y_max }}{% endif %}{% endif -%}
+                  </span>
+                </p>
+              </div>
+              <div class="series-text">
+                {%- assign paras = s.intro | strip | newline_to_br | split: "<br />" -%}
+                {%- for para in paras -%}
+                  {%- assign t = para | strip -%}
+                  {%- if t != "" -%}<p>{{ t }}</p>{%- endif -%}
+                {%- endfor -%}
+              </div>
+            </div>
+
+            <ul class="works">
+              {%- for w in works -%}
+                {%- assign img = w.image | strip -%}
+                {%- assign st = w.status | append: "" | strip -%}
+                {%- assign st_l = st | downcase -%}
+
+                {%- comment -%} Size: show inches as given, and add centimetres when the sheet is in inches {%- endcomment -%}
+                {%- assign dims_txt = w.dimensions | append: "" | strip | replace: " x ", " × " | replace: " X ", " × " -%}
+                {%- assign cm_txt = "" -%}
+                {%- assign dl = w.dimensions | append: "" | downcase | replace: "×", "x" -%}
+                {%- if dl contains " in" -%}
+                  {%- assign parts = dl | remove: "inches" | remove: "inch" | remove: "in" | split: "x" -%}
+                  {%- assign pa = parts[0] | strip | plus: 0 -%}
+                  {%- assign pb = parts[1] | strip | plus: 0 -%}
+                  {%- if pa > 0 and pb > 0 -%}
+                    {%- assign ca = pa | times: 2.54 | round -%}
+                    {%- assign cb = pb | times: 2.54 | round -%}
+                    {%- capture cm_txt -%}{{ ca }} × {{ cb }} cm{%- endcapture -%}
+                  {%- endif -%}
+                {%- endif -%}
+
+                {%- comment -%} Price: show as written; if it is a bare number, format it in Indian digit grouping {%- endcomment -%}
+                {%- assign price_raw = w.price | append: "" | strip -%}
+                {%- assign price_txt = price_raw -%}
+                {%- unless price_raw contains "₹" or price_raw contains "," or price_raw contains "$" -%}
+                  {%- assign n = price_raw | plus: 0 -%}
+                  {%- if n > 0 -%}
+                    {%- capture price_txt -%}
+                      {%- if n >= 100000 -%}
+                        {%- assign lakh = n | divided_by: 100000 -%}
+                        {%- assign rest = n | modulo: 100000 -%}
+                        {%- assign th = rest | divided_by: 1000 -%}
+                        {%- assign hu = rest | modulo: 1000 -%}
+                        ₹{{ lakh }},{% if th < 10 %}0{% endif %}{{ th }},{% if hu < 10 %}00{% elsif hu < 100 %}0{% endif %}{{ hu }}
+                      {%- elsif n >= 1000 -%}
+                        {%- assign th = n | divided_by: 1000 -%}
+                        {%- assign hu = n | modulo: 1000 -%}
+                        ₹{{ th }},{% if hu < 10 %}00{% elsif hu < 100 %}0{% endif %}{{ hu }}
+                      {%- else -%}
+                        ₹{{ n }}
+                      {%- endif -%}
+                    {%- endcapture -%}
+                  {%- endif -%}
+                {%- endunless -%}
+
+                <li class="work {% if st_l == 'available' %}is-available{% elsif st_l == 'sold' %}is-sold{% else %}is-other{% endif %}">
+                  <article>
+                    <a class="work-img" href="/assets/images/catalogue/{{ img }}"
+                       data-alt="{{ w.title | escape }}, {{ w.medium | escape }}, {{ w.year }}"
+                       data-caption="{{ w.title | escape }}, {{ dims_txt | escape }}">
+                      <span class="frame"><img src="/assets/images/catalogue/{{ img }}" alt="{{ w.title | escape }}, {{ w.medium | escape }}, {{ w.year }}. Original artwork by Mansi Gupta from the series {{ s.name | escape }}."
+                        {%- if series_index == 0 and forloop.index0 < 4 %} decoding="async"{% else %} loading="lazy" decoding="async"{% endif %} /></span>
+                    </a>
+                    <div class="work-body">
+                      <h3 class="w-title">{{ w.title }}</h3>
+                      <p class="w-line">{{ w.year }}, {{ w.medium }}</p>
+                      <p class="w-data">{{ dims_txt }}{% if cm_txt != "" %}<br /><span class="cm">{{ cm_txt }}</span>{% endif %}</p>
+                      <p class="w-foot"><span class="status">{{ st }}</span><span class="price">{{ price_txt }}</span></p>
+                      <p class="w-id">{{ w.id }}</p>
+                    </div>
+                  </article>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </section>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </main>
+
+  {% include footer.html %}
+
+  <!-- Full-screen viewer (opens when an image is tapped; without JavaScript the image link opens the file) -->
+  <dialog class="viewer" id="viewer" aria-label="Artwork viewer">
+    <div class="viewer-stage" data-close><img alt="" /></div>
+    <div class="viewer-cap">
+      <span class="viewer-title"></span>
+      <button type="button" data-close>Close</button>
+    </div>
+  </dialog>
+
+  <script>
+  (function () {
+    /* Viewer */
+    var dlg = document.getElementById('viewer');
+    if (dlg && dlg.showModal) {
+      var img = dlg.querySelector('img'), cap = dlg.querySelector('.viewer-title');
+      document.querySelectorAll('.work-img').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+          e.preventDefault();
+          img.src = a.href;
+          img.alt = a.getAttribute('data-alt') || '';
+          cap.textContent = a.getAttribute('data-caption') || '';
+          dlg.showModal();
+        });
+      });
+      dlg.addEventListener('click', function (e) {
+        if (e.target === dlg || e.target.hasAttribute('data-close')) dlg.close();
+      });
+      dlg.addEventListener('close', function () { img.removeAttribute('src'); });
+    }
+
+    /* Highlight the series currently in view in the sticky bar */
+    var nav = document.querySelector('.series-nav');
+    if (nav && 'IntersectionObserver' in window) {
+      var scroller = nav.querySelector('.wrap');
+      var links = [].slice.call(nav.querySelectorAll('a'));
+      var byId = {};
+      links.forEach(function (l) { byId[l.getAttribute('href').slice(1)] = l; });
+      var setCurrent = function (id) {
+        var l = byId[id]; if (!l) return;
+        links.forEach(function (x) { x.removeAttribute('aria-current'); });
+        l.setAttribute('aria-current', 'true');
+        scroller.scrollLeft = l.offsetLeft - (scroller.clientWidth - l.offsetWidth) / 2;
+      };
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) setCurrent(en.target.id); });
+      }, { rootMargin: '-25% 0px -65% 0px' });
+      document.querySelectorAll('.series-block').forEach(function (s) { io.observe(s); });
+    }
+  })();
+  </script>
+</body>
+</html>
