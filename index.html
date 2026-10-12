@@ -93,13 +93,13 @@
 
         <div class="figs">
           <figure class="fig fig-main">
-            <div class="shot">
+            <div class="sheet">
               <img src="art-1.jpg" width="800" height="1000" alt="Be Here Now — ink and watercolour artwork exploring an imagined landscape, by Mansi Gupta" />
             </div>
             <figcaption>Be Here Now</figcaption>
           </figure>
           <figure class="fig fig-detail">
-            <div class="shot">
+            <div class="sheet">
               <img src="art-2.jpg" width="800" height="800" loading="lazy" alt="Experiments — close view of ink and watercolour texture by Mansi Gupta" />
             </div>
             <figcaption>Experiments</figcaption>
@@ -169,7 +169,7 @@
               <li>
                 <a class="series-row" href="/catalogue#{{ s.name | slugify }}">
                   <div class="cover">
-                    <span class="frame"><img src="/assets/images/catalogue/{{ cover.image | strip }}" alt="{{ cover.title | escape }}, from the series {{ s.name | escape }}" loading="lazy" decoding="async" /></span>
+                    <span class="sheet"><img src="/assets/images/catalogue/{{ cover.image | strip }}" alt="{{ cover.title | escape }}, from the series {{ s.name | escape }}"{% if cover.img_w and cover.img_h %} width="{{ cover.img_w }}" height="{{ cover.img_h }}"{% endif %} loading="lazy" decoding="async" /></span>
                   </div>
                   <h3 class="s-name">{{ s.name }}</h3>
                   {%- if excerpt != "" -%}<p class="excerpt">{{ excerpt }}</p>{%- endif -%}

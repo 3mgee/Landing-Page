@@ -201,7 +201,8 @@
                     <a class="work-img" href="/assets/images/catalogue/{{ img }}"
                        data-alt="{{ w.title | escape }}, {{ w.medium | escape }}, {{ w.year }}"
                        data-caption="{{ w.title | escape }}, {{ dims_txt | escape }}">
-                      <span class="frame"><img src="/assets/images/catalogue/{{ img }}" alt="{{ w.title | escape }}, {{ w.medium | escape }}, {{ w.year }}. Original artwork by Mansi Gupta from the series {{ s.name | escape }}."
+                      <span class="sheet"><img src="/assets/images/catalogue/{{ img }}" alt="{{ w.title | escape }}, {{ w.medium | escape }}, {{ w.year }}. Original artwork by Mansi Gupta from the series {{ s.name | escape }}."
+                        {%- if w.img_w and w.img_h %} width="{{ w.img_w }}" height="{{ w.img_h }}"{% endif -%}
                         {%- if series_index == 0 and forloop.index0 < 4 %} decoding="async"{% else %} loading="lazy" decoding="async"{% endif %} /></span>
                     </a>
                     <div class="work-body">
