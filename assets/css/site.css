@@ -10,6 +10,8 @@
   --muted:  #5C5A55;   /* secondary text (6.2:1 on paper) */
   --accent: #2A56A5;   /* links, focus, button shadow (6.4:1 on paper) */
   --line:   #D3D1C8;   /* faint dividers inside sections */
+  --shadow:    0 1px 2px rgba(22,22,26,.18), 0 8px 18px rgba(22,22,26,.08);   /* a sheet of paper lying on the page */
+  --shadow-sm: 0 1px 2px rgba(22,22,26,.16), 0 4px 10px rgba(22,22,26,.07);
 
   --mono: 'Space Mono', ui-monospace, 'Courier New', monospace;
   --sans: 'Work Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -69,9 +71,16 @@ a { color: inherit; }
 .text-link { font: 500 .9rem var(--sans); min-height: 44px; display: inline-flex; align-items: center; text-underline-offset: 4px; }
 .text-link:hover { color: var(--accent); }
 
-/* ---------- Shared artwork frame: whole work, never cropped, on a mat ---------- */
-.frame { display: block; background: var(--mat); overflow: hidden; }
-.frame img { width: 100%; height: 100%; object-fit: contain; }
+/* ---------- Shared artwork treatment: the sheet itself is the frame ----------
+   Each work is shown at its own proportions with a soft shadow, like paper on a table.
+   aspect-ratio "auto 4/5" reserves space until the image loads, then the real ratio takes over
+   (add width/height attributes, or img_w / img_h columns in the sheet, to remove the small shift). */
+.sheet { display: block; }
+.sheet img {
+  display: block; width: 100%; height: auto;
+  background: var(--mat); box-shadow: var(--shadow);
+}
+.sheet img:not([height]) { aspect-ratio: auto 4 / 5; }
 
 /* ==========================================================================
    LANDING PAGE
@@ -85,7 +94,7 @@ a { color: inherit; }
 }
 .hero-head { grid-area: head; }
 .hero-body { grid-area: body; }
-.figs { grid-area: figs; display: grid; grid-template-columns: 1.45fr 1fr; gap: .75rem; max-width: 38rem; }
+.figs { grid-area: figs; display: grid; grid-template-columns: 1.45fr 1fr; gap: 1.1rem; align-items: end; max-width: 38rem; padding: 0 .35rem .35rem 0; }
 
 h1.name {
   margin: 0 0 1rem;
@@ -97,12 +106,7 @@ h1.name span { display: block; }
 .statement { margin: 0 0 1.5rem; max-width: 52ch; color: #2a2a2e; }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem; }
 
-.fig { margin: 0; }
-.fig .shot { overflow: hidden; background: var(--mat); }
-.fig .shot img { width: 100%; height: 100%; object-fit: cover; }
-.fig-main .shot   { aspect-ratio: 4 / 5; }
-.fig-detail       { align-self: end; }
-.fig-detail .shot { aspect-ratio: 1 / 1; }
+.fig { margin: 0; min-width: 0; }
 figcaption { margin-top: .5rem; font: 400 .8rem/1.3 var(--mono); color: var(--muted); }
 
 @media (min-width: 900px) {
@@ -147,7 +151,7 @@ h2.sec {
 .series-row .s-name  { grid-area: head; }
 .series-row .excerpt { grid-area: excerpt; }
 .series-row .facts   { grid-area: facts; align-self: end; }
-.series-row .cover .frame { aspect-ratio: 4 / 5; padding: .35rem; }
+.series-row .cover .sheet img { box-shadow: var(--shadow-sm); }
 
 .s-name { margin: 0; font: 700 clamp(1.35rem, 5vw, 2.4rem)/1.1 var(--mono); letter-spacing: -.045em; }
 .excerpt { margin: .25rem 0 0; font-size: .9rem; line-height: 1.55; color: var(--muted); max-width: 58ch; }
@@ -157,7 +161,7 @@ h2.sec {
 .series-row .view-side { display: none; }
 @media (min-width: 640px) {
   .series-row {
-    --cover: clamp(7.5rem, 14vw, 10.5rem);
+    --cover: clamp(7rem, 12vw, 9rem);
     grid-template-columns: var(--cover) minmax(0, 1fr) auto;
     grid-template-rows: auto auto auto 1fr;
     grid-template-areas: "cover head view" "cover excerpt view" "cover facts view" "cover . .";
@@ -165,7 +169,6 @@ h2.sec {
     padding-block: 1.75rem;
   }
   .series-row .cover { align-self: start; }
-  .series-row .cover .frame { padding: .5rem; }
   .series-row .excerpt { margin-top: 0; font-size: .9375rem; }
   .series-row .facts { align-self: start; justify-content: flex-start; margin-top: .25rem; }
   .series-row .view-side { display: inline; grid-area: view; align-self: start; margin-top: .85rem; font-size: .9rem; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; white-space: nowrap; }
@@ -237,23 +240,21 @@ h1.page-h { margin: 0; font: 700 clamp(2.5rem, 9vw, 4.5rem)/.95 var(--mono); let
 /* Works grid */
 .works {
   list-style: none; margin: 0; padding: 0 0 clamp(2.5rem, 6vw, 4.5rem);
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem .85rem;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1.1rem; align-items: start;
 }
-@media (min-width: 640px)  { .works { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.25rem 1.25rem; } }
-@media (min-width: 1000px) { .works { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.5rem 1.5rem; } }
+@media (min-width: 640px)  { .works { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem 1.5rem; } }
+@media (min-width: 1000px) { .works { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.75rem 1.75rem; } }
 
 .work { margin: 0; min-width: 0; }
-.work article { height: 100%; display: flex; flex-direction: column; }
 .work-img { display: block; cursor: zoom-in; }
-.work .frame { aspect-ratio: 4 / 5; padding: .5rem; }
-.work-body { margin-top: .75rem; flex: 1; display: flex; flex-direction: column; gap: .15rem; }
+.work-body { margin-top: 1rem; display: grid; gap: .15rem; }
 .w-title { margin: 0; font: 600 .95rem/1.3 var(--sans); }
 .w-line  { margin: 0; font-size: .8125rem; line-height: 1.4; color: var(--muted); }
 .w-data  { margin: .1rem 0 .5rem; font: 400 .8rem/1.45 var(--mono); }
 .w-data .cm { color: var(--muted); }
 .w-foot {
   display: flex; justify-content: space-between; align-items: baseline; gap: .5rem;
-  margin: auto 0 0; padding-top: .4rem; border-top: 1px solid var(--line);
+  margin: .4rem 0 0; padding-top: .4rem; border-top: 1px solid var(--line);
 }
 .status { font-size: .8125rem; }
 .price  { font: 700 .9rem var(--mono); }
@@ -315,5 +316,5 @@ dialog.viewer::backdrop { background: rgba(22, 22, 26, .96); }
   .series-block:first-of-type { break-before: auto; }
   .works { grid-template-columns: repeat(3, 1fr); gap: 1.25rem 1rem; }
   .work { break-inside: avoid; }
-  .frame { background: #fff; border: 1px solid #ccc; }
+  .sheet img { box-shadow: none; border: 1px solid #ccc; background: #fff; }
 }
