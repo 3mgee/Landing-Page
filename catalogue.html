@@ -1,395 +1,288 @@
 ---
-layout: default
-title: Catalogue of Works
 ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FFFFFF" />
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600;700&display=swap');
 
-  :root {
-    --font-mono: 'Space Mono', monospace, Courier;
-    --font-sans: 'Inter', system-ui, sans-serif;
-    --border-black: #000000;
-    --bg-page: #fdfdfd;
-    --bg-card: #ffffff;
-    --bg-muted: #f5f5f0;
+
+  <!-- SEO -->
+  <title>Catalogue of Works — Mansi Gupta</title>
+  <meta name="description" content="Catalogue of original watercolour, ink and mixed-media works by Mansi Gupta, grouped by series, with sizes, status and prices." />
+  <meta name="author" content="Mansi Gupta" />
+  <link rel="canonical" href="https://www.mansigupta.in/catalogue" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23161616'/%3E%3Ctext x='50' y='68' font-size='56' font-family='sans-serif' font-weight='700' text-anchor='middle' fill='%23ffffff'%3EMG%3C/text%3E%3C/svg%3E" />
+
+  <!-- LINK PREVIEWS -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.mansigupta.in/catalogue" />
+  <meta property="og:title" content="Catalogue of Works — Mansi Gupta" />
+  <meta property="og:description" content="Original watercolour, ink and mixed-media works, grouped by series, with sizes, status and prices." />
+  <meta property="og:image" content="https://www.mansigupta.in/art-1.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  {%- assign all_works = site.data.catalogue -%}
+
+  <!-- STRUCTURED DATA: every work listed as a VisualArtwork (no purchase "offers": this is an archive, not a shop) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Catalogue of Works — Mansi Gupta",
+    "url": "https://www.mansigupta.in/catalogue",
+    "isPartOf": { "@type": "WebSite", "url": "https://www.mansigupta.in/", "name": "Mansi Gupta" },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": {{ all_works | size }},
+      "itemListElement": [
+      {%- for w in all_works %}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.index }},
+          "item": {
+            "@type": "VisualArtwork",
+            "name": {{ w.title | append: "" | jsonify }},
+            "creator": { "@type": "Person", "@id": "https://www.mansigupta.in/#artist", "name": "Mansi Gupta" },
+            "image": "https://www.mansigupta.in/assets/images/catalogue/{{ w.image | strip }}",
+            "dateCreated": {{ w.year | append: "" | jsonify }},
+            "artMedium": {{ w.medium | append: "" | jsonify }},
+            "description": {{ w.collection | append: ", " | append: w.medium | append: ", " | append: w.dimensions | jsonify }}
+          }
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor %}
+      ]
+    }
   }
+  </script>
 
-  body {
-    background-color: var(--bg-page);
-    color: #000000;
-    font-family: var(--font-sans);
-  }
+  <!-- FONTS & STYLES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/site.css" />
+</head>
 
-  /* Main Container Box */
-  .catalogue-wrapper {
-    max-width: 1100px;
-    margin: 2rem auto;
-    padding: 2.5rem 2rem;
-    border: 2.5px solid var(--border-black);
-    box-shadow: 7px 7px 0px var(--border-black);
-    background: #ffffff;
-  }
+<body>
+  <a class="skip" href="#main">Skip to content</a>
 
-  /* Navigation Header */
-  .top-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2.5px solid var(--border-black);
-    padding-bottom: 1.2rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .nav-brand {
-    font-family: var(--font-mono);
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    text-decoration: none;
-    color: #000;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-  }
-
-  .nav-link {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-decoration: none;
-    color: #000;
-    border: 1.5px solid var(--border-black);
-    padding: 0.4rem 0.8rem;
-    background: #fff;
-    box-shadow: 2.5px 2.5px 0px var(--border-black);
-    transition: all 0.1s ease;
-  }
-
-  .nav-link:hover, .nav-link.active {
-    background: #000;
-    color: #fff;
-  }
-
-  .nav-link:active {
-    transform: translate(1px, 1px);
-    box-shadow: 1px 1px 0px var(--border-black);
-  }
-
-  /* Page Header Title */
-  .header-block {
-    margin-bottom: 2.5rem;
-  }
-
-  .header-title {
-    font-family: var(--font-mono);
-    font-size: 2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 0 0 0.4rem 0;
-    letter-spacing: -0.02em;
-  }
-
-  .header-subtitle {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: #444;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin: 0;
-  }
-
-  /* Filter & Jump Navigation Bar */
-  .controls-bar {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    background: var(--bg-muted);
-    border: 2px solid var(--border-black);
-    padding: 1.2rem;
-    margin-bottom: 3rem;
-  }
-
-  .control-group {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-  }
-
-  .control-label {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #555;
-    min-width: 110px;
-  }
-
-  .filter-btn, .jump-btn {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    font-weight: 700;
-    background: #ffffff;
-    color: #000000;
-    border: 1.5px solid var(--border-black);
-    padding: 0.4rem 0.9rem;
-    cursor: pointer;
-    box-shadow: 2.5px 2.5px 0px var(--border-black);
-    text-decoration: none;
-    transition: all 0.1s ease;
-  }
-
-  .filter-btn:hover, .jump-btn:hover {
-    background: #000;
-    color: #fff;
-  }
-
-  .filter-btn.active {
-    background: #000;
-    color: #fff;
-  }
-
-  /* Collection Sections */
-  .collection-block {
-    margin-bottom: 4rem;
-    scroll-margin-top: 2rem;
-  }
-
-  .collection-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    border-bottom: 2px solid var(--border-black);
-    padding-bottom: 0.6rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .collection-title {
-    font-family: var(--font-mono);
-    font-size: 1.35rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 0;
-    letter-spacing: -0.01em;
-  }
-
-  .collection-count {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: #666;
-  }
-
-  /* Works Grid & Cards */
-  .works-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  .work-card {
-    display: flex;
-    flex-direction: column;
-    background: var(--bg-card);
-    border: 2px solid var(--border-black);
-    padding: 1.2rem;
-    box-shadow: 4px 4px 0px var(--border-black);
-    transition: transform 0.15s ease;
-  }
-
-  .work-card:hover {
-    transform: translateY(-3px);
-  }
-
-  .image-container {
-    width: 100%;
-    height: 320px;
-    background: var(--bg-muted);
-    border: 1.5px solid var(--border-black);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .image-container img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    display: block;
-  }
-
-  .inv-code {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: #555555;
-    margin-bottom: 0.3rem;
-  }
-
-  .work-title {
-    font-family: var(--font-mono);
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin: 0 0 0.5rem 0;
-    line-height: 1.3;
-  }
-
-  .work-details {
-    font-size: 0.85rem;
-    color: #333333;
-    margin: 0.15rem 0;
-    line-height: 1.4;
-  }
-
-  .card-footer {
-    margin-top: auto;
-    padding-top: 0.9rem;
-    border-top: 1.5px solid var(--border-black);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-  }
-
-  .badge {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    padding: 0.2rem 0.5rem;
-    border: 1.5px solid var(--border-black);
-    text-transform: uppercase;
-    font-weight: 700;
-  }
-
-  .badge-available { background: #e6f4ea; color: #000000; }
-  .badge-sold { background: #fce8e6; color: #000000; }
-
-  /* Footer Section */
-  .catalogue-footer {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 2.5px solid var(--border-black);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: #555;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .catalogue-footer a {
-    color: #000;
-    text-decoration: underline;
-  }
-
-  @media print {
-    body { background: #fff; }
-    .catalogue-wrapper { border: none; box-shadow: none; padding: 0; }
-    .top-nav, .controls-bar, .catalogue-footer { display: none !important; }
-    .collection-block { page-break-before: always; }
-    .works-grid { display: block; }
-    .work-card { page-break-inside: avoid; margin-bottom: 2rem; box-shadow: none; }
-  }
-</style>
-
-<div class="catalogue-wrapper">
-  <!-- Top Synced Header Navigation -->
-  <nav class="top-nav">
-    <a href="/" class="nav-brand">MANSI GUPTA</a>
-    <div class="nav-links">
-      <a href="/" class="nav-link">[ HOME ]</a>
-      <a href="/catalogue" class="nav-link active">[ CATALOGUE ]</a>
-      <a href="mailto:contact@mansigupta.in" class="nav-link">[ INQUIRE ]</a>
-    </div>
-  </nav>
-
-  <!-- Page Header -->
-  <header class="header-block">
-    <h1 class="header-title">Catalogue of Works</h1>
-    <p class="header-subtitle">[ Original Paintings — Ink, Watercolors & Mixed Media ]</p>
-  </header>
-
-  <!-- Interactive Controls: Filtering & Navigation -->
-  <div class="controls-bar">
-    <div class="control-group">
-      <span class="control-label">FILTER STATUS:</span>
-      <button class="filter-btn active" onclick="filterWorks('all', event)">[ ALL WORKS ]</button>
-      <button class="filter-btn" onclick="filterWorks('Available', event)">[ AVAILABLE ]</button>
-      <button class="filter-btn" onclick="filterWorks('Sold', event)">[ SOLD ]</button>
-    </div>
-
-    <div class="control-group">
-      <span class="control-label">JUMP TO SERIES:</span>
-      {% assign collections = site.data.catalogue | group_by: "collection" %}
-      {% for col in collections %}
-        {% assign col_slug = col.name | slugify %}
-        <a href="#{{ col_slug }}" class="jump-btn">/ {{ col.name }}</a>
-      {% endfor %}
-    </div>
+  <div class="wrap">
+    <header class="site-head">
+      <a class="brand" href="/">Mansi Gupta</a>
+      <nav class="nav-d" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/catalogue" aria-current="page">Catalogue</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <details class="menu">
+        <summary>Menu</summary>
+        <nav aria-label="Menu">
+          <a href="/">Home</a>
+          <a href="/catalogue" aria-current="page">Catalogue</a>
+          <a href="/portfolio.pdf" download="Mansi_Gupta_Portfolio.pdf">Portfolio (PDF)</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </details>
+    </header>
   </div>
 
-  <!-- Collections List -->
-  {% for col in collections %}
-    {% assign col_slug = col.name | slugify %}
-    <section id="{{ col_slug }}" class="collection-block">
-      <div class="collection-header">
-        <h2 class="collection-title">/ {{ col.name }}</h2>
-        <span class="collection-count">[{{ col.items | size }} WORKS]</span>
+  {%- assign n_series = 0 -%}
+  {%- for s in site.data.series -%}
+    {%- assign probe = all_works | where: "collection", s.name -%}
+    {%- if probe.size > 0 -%}{%- assign n_series = n_series | plus: 1 -%}{%- endif -%}
+  {%- endfor -%}
+
+  <main id="main">
+
+    <div class="wrap">
+      <div class="page-title">
+        <h1 class="page-h">Catalogue</h1>
+        <p>
+          {{ all_works | size }} original works in {{ n_series }} series. Sizes are in inches and centimetres, and prices are in Indian rupees.
+          To enquire about a work, email <a href="mailto:contact@mansigupta.in">contact@mansigupta.in</a> with its ID.
+        </p>
       </div>
-      
-      <div class="works-grid">
-        {% for work in col.items %}
-          {% assign clean_img = work.image | strip %}
-          <div class="work-card {{ work.status }}">
-            <div class="image-container">
-              <img 
-                src="/assets/images/catalogue/{{ clean_img }}" 
-                alt="{{ work.title }}" 
-                loading="lazy" 
-              />
-            </div>
-            <span class="inv-code">{{ work.id }}</span>
-            <h3 class="work-title">{{ work.title }} ({{ work.year }})</h3>
-            <p class="work-details">{{ work.medium }}</p>
-            <p class="work-details">{{ work.dimensions }}</p>
-            <div class="card-footer">
-              <span class="badge badge-{{ work.status | downcase }}">{{ work.status }}</span>
-              <strong>{{ work.price }}</strong>
-            </div>
-          </div>
-        {% endfor %}
+    </div>
+
+    <!-- Sticky series bar -->
+    <nav class="series-nav" aria-label="Series">
+      <div class="wrap">
+        {%- for s in site.data.series -%}
+          {%- assign probe = all_works | where: "collection", s.name -%}
+          {%- if probe.size > 0 -%}
+            <a href="#{{ s.name | slugify }}">{{ s.name }}</a>
+          {%- endif -%}
+        {%- endfor -%}
       </div>
-    </section>
-  {% endfor %}
+    </nav>
 
-  <!-- Footer -->
-  <footer class="catalogue-footer">
-    <span>© 2026 Mansi Gupta</span>
-    <span>Inquiries & Acquisitions: <a href="mailto:contact@mansigupta.in">contact@mansigupta.in</a></span>
-  </footer>
-</div>
+    <div class="wrap">
+      {%- for s in site.data.series -%}
+        {%- assign works = all_works | where: "collection", s.name -%}
+        {%- if works.size > 0 -%}
+          {%- assign series_index = forloop.index0 -%}
 
-<script>
-  function filterWorks(status, evt) {
-    const buttons = document.querySelectorAll('.filter-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
-    evt.target.classList.add('active');
+          {%- assign n_avail = 0 -%}{%- assign n_sold = 0 -%}
+          {%- assign y_min = 9999 -%}{%- assign y_max = 0 -%}
+          {%- for w in works -%}
+            {%- assign y = w.year | plus: 0 -%}
+            {%- if y > 0 -%}
+              {%- if y < y_min -%}{%- assign y_min = y -%}{%- endif -%}
+              {%- if y > y_max -%}{%- assign y_max = y -%}{%- endif -%}
+            {%- endif -%}
+            {%- assign st = w.status | downcase | strip -%}
+            {%- if st == "available" -%}{%- assign n_avail = n_avail | plus: 1 -%}
+            {%- elsif st == "sold" -%}{%- assign n_sold = n_sold | plus: 1 -%}{%- endif -%}
+          {%- endfor -%}
 
-    const cards = document.querySelectorAll('.work-card');
-    cards.forEach(card => {
-      if (status === 'all' || card.classList.contains(status)) {
-        card.style.display = 'flex';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  }
-</script>
+          <section class="series-block" id="{{ s.name | slugify }}" aria-labelledby="h-{{ s.name | slugify }}">
+            <div class="series-head">
+              <div>
+                <h2 id="h-{{ s.name | slugify }}">{{ s.name }}</h2>
+                <p class="facts">
+                  <span>
+                    {{- works.size }} {% if works.size == 1 %}work{% else %}works{% endif -%}
+                    {%- if n_avail > 0 %}, {{ n_avail }} available{% endif -%}
+                    {%- if n_sold > 0 %}, {{ n_sold }} sold{% endif -%}
+                    {%- if y_max > 0 %}, {% if y_min == y_max %}{{ y_min }}{% else %}{{ y_min }}–{{ y_max }}{% endif %}{% endif -%}
+                  </span>
+                </p>
+              </div>
+              <div class="series-text">
+                {%- assign paras = s.intro | strip | newline_to_br | split: "<br />" -%}
+                {%- for para in paras -%}
+                  {%- assign t = para | strip -%}
+                  {%- if t != "" -%}<p>{{ t }}</p>{%- endif -%}
+                {%- endfor -%}
+              </div>
+            </div>
+
+            <ul class="works">
+              {%- for w in works -%}
+                {%- assign img = w.image | strip -%}
+                {%- assign st = w.status | append: "" | strip -%}
+                {%- assign st_l = st | downcase -%}
+
+                {%- comment -%} Size: show inches as given, and add centimetres when the sheet is in inches {%- endcomment -%}
+                {%- assign dims_txt = w.dimensions | append: "" | strip | replace: " x ", " × " | replace: " X ", " × " -%}
+                {%- assign cm_txt = "" -%}
+                {%- assign dl = w.dimensions | append: "" | downcase | replace: "×", "x" -%}
+                {%- if dl contains " in" -%}
+                  {%- assign parts = dl | remove: "inches" | remove: "inch" | remove: "in" | split: "x" -%}
+                  {%- assign pa = parts[0] | strip | plus: 0 -%}
+                  {%- assign pb = parts[1] | strip | plus: 0 -%}
+                  {%- if pa > 0 and pb > 0 -%}
+                    {%- assign ca = pa | times: 2.54 | round -%}
+                    {%- assign cb = pb | times: 2.54 | round -%}
+                    {%- capture cm_txt -%}{{ ca }} × {{ cb }} cm{%- endcapture -%}
+                  {%- endif -%}
+                {%- endif -%}
+
+                {%- comment -%} Price: show as written; if it is a bare number, format it in Indian digit grouping {%- endcomment -%}
+                {%- assign price_raw = w.price | append: "" | strip -%}
+                {%- assign price_txt = price_raw -%}
+                {%- unless price_raw contains "₹" or price_raw contains "," or price_raw contains "$" -%}
+                  {%- assign n = price_raw | plus: 0 -%}
+                  {%- if n > 0 -%}
+                    {%- capture price_txt -%}
+                      {%- if n >= 100000 -%}
+                        {%- assign lakh = n | divided_by: 100000 -%}
+                        {%- assign rest = n | modulo: 100000 -%}
+                        {%- assign th = rest | divided_by: 1000 -%}
+                        {%- assign hu = rest | modulo: 1000 -%}
+                        ₹{{ lakh }},{% if th < 10 %}0{% endif %}{{ th }},{% if hu < 10 %}00{% elsif hu < 100 %}0{% endif %}{{ hu }}
+                      {%- elsif n >= 1000 -%}
+                        {%- assign th = n | divided_by: 1000 -%}
+                        {%- assign hu = n | modulo: 1000 -%}
+                        ₹{{ th }},{% if hu < 10 %}00{% elsif hu < 100 %}0{% endif %}{{ hu }}
+                      {%- else -%}
+                        ₹{{ n }}
+                      {%- endif -%}
+                    {%- endcapture -%}
+                  {%- endif -%}
+                {%- endunless -%}
+
+                <li class="work {% if st_l == 'available' %}is-available{% elsif st_l == 'sold' %}is-sold{% else %}is-other{% endif %}">
+                  <article>
+                    <a class="work-img" href="/assets/images/catalogue/{{ img }}"
+                       data-alt="{{ w.title | escape }}, {{ w.medium | escape }}, {{ w.year }}"
+                       data-caption="{{ w.title | escape }}, {{ dims_txt | escape }}">
+                      <span class="sheet"><img src="/assets/images/catalogue/{{ img }}" alt="{{ w.title | escape }}, {{ w.medium | escape }}, {{ w.year }}. Original artwork by Mansi Gupta from the series {{ s.name | escape }}."
+                        {%- if w.img_w and w.img_h %} width="{{ w.img_w }}" height="{{ w.img_h }}"{% endif -%}
+                        {%- if series_index == 0 and forloop.index0 < 4 %} decoding="async"{% else %} loading="lazy" decoding="async"{% endif %} /></span>
+                    </a>
+                    <div class="work-body">
+                      <h3 class="w-title">{{ w.title }}</h3>
+                      <p class="w-line">{{ w.year }}, {{ w.medium }}</p>
+                      <p class="w-data">{{ dims_txt }}{% if cm_txt != "" %}<br /><span class="cm">{{ cm_txt }}</span>{% endif %}</p>
+                      <p class="w-foot"><span class="status">{{ st }}</span><span class="price">{{ price_txt }}</span></p>
+                      <p class="w-id">{{ w.id }}</p>
+                    </div>
+                  </article>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </section>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </main>
+
+  {% include footer.html %}
+
+  <!-- Full-screen viewer (opens when an image is tapped; without JavaScript the image link opens the file) -->
+  <dialog class="viewer" id="viewer" aria-label="Artwork viewer">
+    <div class="viewer-stage" data-close><img alt="" /></div>
+    <div class="viewer-cap">
+      <span class="viewer-title"></span>
+      <button type="button" data-close>Close</button>
+    </div>
+  </dialog>
+
+  <script>
+  (function () {
+    /* Viewer */
+    var dlg = document.getElementById('viewer');
+    if (dlg && dlg.showModal) {
+      var img = dlg.querySelector('img'), cap = dlg.querySelector('.viewer-title');
+      document.querySelectorAll('.work-img').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+          e.preventDefault();
+          img.src = a.href;
+          img.alt = a.getAttribute('data-alt') || '';
+          cap.textContent = a.getAttribute('data-caption') || '';
+          dlg.showModal();
+        });
+      });
+      dlg.addEventListener('click', function (e) {
+        if (e.target === dlg || e.target.hasAttribute('data-close')) dlg.close();
+      });
+      dlg.addEventListener('close', function () { img.removeAttribute('src'); });
+    }
+
+    /* Highlight the series currently in view in the sticky bar */
+    var nav = document.querySelector('.series-nav');
+    if (nav && 'IntersectionObserver' in window) {
+      var scroller = nav.querySelector('.wrap');
+      var links = [].slice.call(nav.querySelectorAll('a'));
+      var byId = {};
+      links.forEach(function (l) { byId[l.getAttribute('href').slice(1)] = l; });
+      var setCurrent = function (id) {
+        var l = byId[id]; if (!l) return;
+        links.forEach(function (x) { x.removeAttribute('aria-current'); });
+        l.setAttribute('aria-current', 'true');
+        scroller.scrollLeft = l.offsetLeft - (scroller.clientWidth - l.offsetWidth) / 2;
+      };
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) setCurrent(en.target.id); });
+      }, { rootMargin: '-25% 0px -65% 0px' });
+      document.querySelectorAll('.series-block').forEach(function (s) { io.observe(s); });
+    }
+  })();
+  </script>
+</body>
+</html>
